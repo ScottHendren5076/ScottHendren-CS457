@@ -1,9 +1,9 @@
 # CS 457 Project Statement of Work (SOW) & Protocol Specification Template
 
-**Student Name:** [Your Full Name]  
-**Date:** [YYYY-MM-DD]  
+**Student Name:** Scott Hendren  
+**Date:** [2026-09-19]  
 **Course:** CS 457 - Computer Networks  
-**Target Server Domain:** `server.[yourlastname].edu`  
+**Target Server Domain:** `server.hendren.edu`  
 
 ---
 
@@ -17,14 +17,14 @@
 > - You are encouraged to use python, but I'm not going to make it a strict requirement. The instructor and TA's ability to help with C or Rust, etc will be diminished in other languages.
 
 ### 1.1 Game Overview
-- **Chosen Game:** [e.g., Terminal Trivia, Tic-Tac-Toe, Connect Four, Battleship]
+- **Chosen Game:** Tic-Tac-Toe
 - **Player Capacity:** 2 Players (Simulated via 2 CML Client nodes)
-- **Game Summary:** [Briefly describe the gameplay mechanics and rules]
+- **Game Summary:** This is a 2 player game played on a 3x3 grid. Player 1 uses 'X' and Player 2 uses 'O', they take turns selecting an empty position on the board. A non-empty position cannot be used once a player places their 'X'/'O' in that position. The game will continue until one player connects their corresponding value in a rows of 3 (Vertically, Horizontally, or Diagonally), or the board has been completely filled with values with none of them creating a connected line of values (Tie condition)
 
 ### 1.2 Core Game Rules & Win/Draw Conditions
-- **Turn Mechanics:** [Explain how turn order is enforced between Player 1 and Player 2]
-- **Victory Condition:** [Define how a player wins the game]
-- **Draw/Tie Condition:** [Define how a draw/tie is detected and handled]
+- **Turn Mechanics:** Turn order is controlled by the server, where Player 1 ('X') will always go first, then Player 2 ('O') will go, and turns will alternate until a player wins or the game ends in a tie. Moves will only be accepted when it is the specified player's turn, if a player attempts to make a move when it is not their turn, the move will not be recorded. After a move is accepted, the server will update the board for both players and the turn will change to the next player.
+- **Victory Condition:** A player will win the game by placing 3 of their values ('X'/'O') in a consecutive row/column/diagonal. After each move, the server will check if there is a winning condition and if one is found, the game will end and the winning player will be notified of their success and the loser notified of their loss.
+- **Draw/Tie Condition:** A draw can occur if all positions on the board are filled and neither player has a winning condition. When this occurs, the server will end the current game and declare it as a draw/tie.
 
 ---
 
