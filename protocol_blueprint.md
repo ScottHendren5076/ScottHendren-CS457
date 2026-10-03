@@ -10,6 +10,14 @@
 
 ### 2.2 Message Schema Definitions
 
+### Message Schema
+| Field | Data Type | Required | Description|
+| --- | --- | --- | --- |
+| msg_type | String | Yes | Identifies the type of message being sent |
+| player_id | String | Yes | Identifies the player who is sending the message. (e.g. "Player_1", "Player_2", "Server") |
+| payload | Object | Yes | The specific data relating the the message type |
+| timestamp | Integer | Yes | Shows when message was ceated |
+
 #### Message Types:
 1. `CONNECT` (Client -> Server): Request to join the game room.
 2. `LOBBY_WAIT` (Server -> Client): Notification that server is waiting for Player 2.
@@ -108,7 +116,9 @@
 {
   "msg_type": "DISCONNECT",
   "player_id": "Player_1",
-  "payload": {},
+  "payload": {
+    "reason": "Forfeit"
+  },
   "timestamp": 1727000000
 }
 ```
