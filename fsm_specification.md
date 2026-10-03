@@ -1,5 +1,5 @@
 ```mermaid
-flowchart TD
+stateDiagram-v2
 A["INIT"] --> B["WAITING_FOR_PLAYERS"] 
 B -->|CONNECT - Player 1| C["LOBBY_WAIT"] 
 C -->|Send LOBBY_WAIT| B 
