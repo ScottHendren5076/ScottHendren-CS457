@@ -7,7 +7,7 @@ B -->|CONNECT - Player 2| D["GAME_START"]
 D -->|Send GAME_START| E["PLAYER_TURN"] 
 E -->|MOVE received| F["EVALUATE_MOVE"] 
 E -->|DISCONNECT - FORFEIT/QUIT| G["GAME_OVER"] 
-E -->|Unexpected TCP disconnect|G 
+E -->|TCP disconnect|G 
 F -->|Invalid move| H["ERROR"] 
 H -->|Send ERROR| E 
 F -->|Valid move| I["CHECK_WIN_DRAW"] 
