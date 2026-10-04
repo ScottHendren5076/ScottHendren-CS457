@@ -5,7 +5,7 @@
   - ***Framing Rule:*** Every JSON object is UTF-8 encoded and terminated by a newline character \n (0x0A). The receiver accumulates incoming bytes into a stream buffer until a \n is encountered, extracts the complete line, and deserializes the JSON object.
   - ***Wire Stream Example (Continuous Stream):***
   ```text
-  {"msg_type":"CONNECT","player_id":"Alice","timestamp":1727000000}\n{"msg_type":"MOVE","player_id":"Alice","payload":{"row":0,"col":2},"timestamp":1727000005}\n
+  {"msg_type":"CONNECT","player_id":"Player_1","payload":{},"timestamp":1727000000}\n{"msg_type":"MOVE","player_id":"Player_1","payload":{"row":0,"col":2},"timestamp":1727000005}\n
   ```
 
 ### 2.2 Message Schema Definitions
