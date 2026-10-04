@@ -148,4 +148,22 @@
   "timestamp": 1727000006
 }
 ```
+### 2.3 FSM Mermaid Diagram
+-See fsm_specification.md file
+
+### 2.4 Connection Termination & Socket Lifecycle Management
+- **Transport-Layer Termination vs. Application Disconnection:**
+    - Application-Layer Disconnect (DISCONNECT Message): An active client sends a structured DISCONNECT message before terminating. This allows the server to notify the opponent cleanly, declare a win by forfeit, and immediately reclaim resources.
+    - Transport-Layer Teardown (TCP FIN / Clean Closure): When a process calls sock.close() or exits normally, the operating system initiates the TCP 4-way FIN handshake. Allowing the game to be terminated cleanly.
+    -  Abrupt Termination (TCP RST / Hard Drops): If a client process is killed abruptly (kill -9, power loss, or a severed router link in CML), no FIN handshake is completed. The next attempt to read or write will trigger a TCP Reset (RST) or timeout.
+ - **TCP EOF (0-Byte) Rule:**
+    - When a return value of "b""" is found, the game will treat this as a forfeit / DISCONNECT message and terminate the game, declaring the remaining player as the winner.
+      - The socket receive loop will check "if not  data: break" to prevent an infinite loop from occuring.
+ - **Socket Exceptions During Network Drops:**
+     - When low-level socket operations raise exceptions like "ConnectionResetEror (TCP RST)", "BrokenPipeError (EPIPE)", or TimeoutError, the exceptions will be aught and trigger state machine clean up and prevent process crashes.
+
+
+
+
+
 
